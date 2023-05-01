@@ -1,11 +1,12 @@
-# Module 3 Challenge: Password generator
+# Module 3 Challenge: Password Generator
 
 ## Overview:
 * Developer: Donna Thompson
-* Challenge type: Refactoring starter code for a Password Generator
+* Challenge type: Enhancing starter code for a Password Generator
 * The Password Generator enables users to generate random passwords based on criteria that they’ve selected. 
-* The user can choose the length of the password. The length must be 8 - 128 chars.
-* The user can choose whether the password can include lowercase, uppercase, numeric, and/or special characters. At least 1 character type must be chosen, or the app will alert the user that none were chosen and the default of lowercase, uppercase, and numeric will be used.
+* The user can choose the length of the password. The length must be 8 - 128 chars and will be validated.
+* The user can choose whether the password can include lowercase, uppercase, numeric, and/or special characters. At least 1 character type must be chosen, and will be validated.
+* The user can copy the generated password to the clipboard using a "Copy Password" button
 * This app will run in the browser with dynamically updated HTML and CSS powered by JavaScript code. 
 * The UI will adapt to multiple screen sizes.
 
