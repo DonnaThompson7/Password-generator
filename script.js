@@ -6,44 +6,47 @@ var charsSpecial = "@%+\/'!#$^?:,(){}[]~-_.";
 
 function generatePassword() {
     var pwdLength = 8;
-    var useLowercase;
-    var useUppercase;
-    var useNumeric;
-    var useSpecialChars;
+    var useLowercase = false;
+    var useUppercase=false;
+    var useNumeric=false;
+    var useSpecialChars=false;
     var charsToUse = "";  
 
     //User is prompted to choose length of password. Defaults to 8 chars. 
         //includes VALIDATION: will prompt user until LENGTH IS BE BETWEEN 8 and 128
-        do {
-          pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
-        } while (pwdLength < 8 || pwdLength > 128)
+      pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
+        while (pwdLength < 8 || pwdLength > 128) {
+          pwdLength = window.prompt("*INVALID ENTRY* The length must be a number between 8 and 128. Please re-enter desired length of password: ");
+        } 
         console.log(pwdLength)
+       
+      var invalidEntry;
+      do  {
+            //User is prompted to specify 4 char types for password
+            // 1 - specify if want to use lowercase. Defaults to true.
+            useLowercase = window.confirm("Include lowercase? (Yes/No) ");
+            // 2 - specify if want to use uppercase. Defaults to true.
+            useUppercase = window.confirm("Include uppercase? (Yes/No) ");
+            // 3 - specify if want to use numeric values. Defaults to true.
+            useNumeric = window.confirm("Include numeric values? (Yes/No) ");
+            // 4 - specify if want to use special chars. Defaults to true.
+            useSpecialChars = window.confirm("Include special chars? (Yes/No) ");
+            //VALIDATION: if no character type has been selected, alert user and do over.
+            if (!useLowercase && !useUppercase && !useNumeric && !useSpecialChars) 
+                {
+                window.alert("Since no character type was selected, prompts will be repeated.");
+                invalidEntry = true;
+                }
+            else { invalidEntry = false;}
+          }
+        while (invalidEntry);
 
-    //User is prompted to specify 4 char types for password
-        // 1 - specify if want to use lowercase. Defaults to true.
-        useLowercase = window.confirm("Include lowercase? (Yes/No) ");
-
-        // 2 - specify if want to use uppercase. Defaults to true.
-        useUppercase = window.confirm("Include uppercase? (Yes/No) ");
-
-        // 3 - specify if want to use numeric values. Defaults to true.
-        useNumeric = window.confirm("Include numeric values? (Yes/No) ");
-
-        // 4 - specify if want to use special chars. Defaults to true.
-        useSpecialChars = window.confirm("Include special chars? (Yes/No) ");
-
+        
     //build string of chars to use for this pwd, per user input above
         if (useLowercase)    {charsToUse = charsLower;}
         if (useUppercase)    {charsToUse = charsToUse + charsUpper;}
         if (useNumeric)      {charsToUse = charsToUse + charsNumeric;}
         if (useSpecialChars) {charsToUse = charsToUse + charsSpecial;}
-
-        //VALIDATION: if no character type has been selected, password generator will alert user that it will default to lower, upper and numeric
-        if (!useLowercase && !useUppercase && !useNumeric && !useSpecialChars) 
-          {
-            charsToUse = charsLower + charsUpper + charsNumeric;
-            window.alert("Since no character type was selected, password generator will use lower, upper and numeric.");
-          } 
 
     // generate new password for user-specified length and character set, using Math.random and Math.floor
     // since starting i = 0, must use < pwdLength, not <= pwdLength
