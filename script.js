@@ -13,9 +13,9 @@ function generatePassword() {
     var charsToUse = "";  
 
     //User is prompted to choose length of password. Defaults to 8 chars. 
-      //NEED VALIDATION!! LENGTH MUST BE BETWEEN 8 - 128
+        //includes VALIDATION: will prompt user until LENGTH IS BE BETWEEN 8 and 128
         do {
-          pwdLength = window.prompt("Enter desired length of password. (Please enter a number between 8 and 128): ");
+          pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
         } while (pwdLength < 8 || pwdLength > 128)
         console.log(pwdLength)
 
@@ -37,15 +37,16 @@ function generatePassword() {
         if (useUppercase)    {charsToUse = charsToUse + charsUpper;}
         if (useNumeric)      {charsToUse = charsToUse + charsNumeric;}
         if (useSpecialChars) {charsToUse = charsToUse + charsSpecial;}
-        
-        //VALIDATION: if no character type was selected, password generator will alert user that it will default to lower, upper and numeric
+
+        //VALIDATION: if no character type has been selected, password generator will alert user that it will default to lower, upper and numeric
         if (!useLowercase && !useUppercase && !useNumeric && !useSpecialChars) 
           {
             charsToUse = charsLower + charsUpper + charsNumeric;
             window.alert("Since no character type was selected, password generator will use lower, upper and numeric.");
           } 
 
-    // generate new password for user-specified length and character set
+    // generate new password for user-specified length and character set, using Math.random and Math.floor
+    // since starting i = 0, must use < pwdLength, not <= pwdLength
     var newPassword = ""
       for (var i = 0; i < pwdLength; i++) {
         var randomNumber = Math.floor(Math.random() * charsToUse.length);
