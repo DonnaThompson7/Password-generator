@@ -72,7 +72,8 @@ header {
   clear: both;
 }
 
-.button-to-generate {
+.button-to-generate,
+.button-to-copy {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
@@ -119,7 +120,8 @@ button[disabled] {
 }
 
 @media (max-width: 690px) {
-  .button-to-generate {
+  .button-to-generate,
+  .button-to-copy {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
@@ -131,7 +133,8 @@ button[disabled] {
 }
 
 @media (max-width: 500px) {
-  .button-to-generate {
+  .button-to-generate,
+  .button-to-copy {
     font-size: 0.8rem;
   }
 }

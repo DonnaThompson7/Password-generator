@@ -57,8 +57,11 @@ function generatePassword() {
     return newPassword;
 }
 
-// Assignment Code
+// Assignment Code for generate button
 var generateBtn = document.querySelector("#generate");
+
+// Assignment Code for copy button
+var copyBtn = document.querySelector("#copy");
 
 // call function to create a password; Write password to the #password input
 function writePassword() {
@@ -68,5 +71,18 @@ function writePassword() {
   console.log("writePassword function was executed, and passwordText.value= " + passwordText.value)
 }
 
+
+// call function to copy the password from the web page to the clipboard
+//isn't there a way to do this all in html?
+function copyPassword() {
+  var copyPasswordText = document.querySelector("#password");
+  navigator.clipboard.writeText(copyPasswordText.value)
+  console.log("copyPassword function was executed, and copyPasswordText.value= " + copyPasswordText.value)
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+// Add event listener to COPY button
+copyBtn.addEventListener("click", copyPassword);
+
