@@ -13,12 +13,11 @@ function generatePassword() {
     var charsToUse = "";  
 
     //User is prompted to choose length of password. Defaults to 8 chars. 
+        pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
         //includes VALIDATION: will prompt user until LENGTH IS BE BETWEEN 8 and 128
-      pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
         while (pwdLength < 8 || pwdLength > 128) {
           pwdLength = window.prompt("*INVALID ENTRY* The length must be a number between 8 and 128. Please re-enter desired length of password: ");
         } 
-        console.log(pwdLength)
        
       var invalidEntry;
       do  {
@@ -34,14 +33,14 @@ function generatePassword() {
             //VALIDATION: if no character type has been selected, alert user and do over.
             if (!useLowercase && !useUppercase && !useNumeric && !useSpecialChars) 
                 {
-                window.alert("Since no character type was selected, prompts will be repeated.");
+                window.alert("*INVALID ENTRY* At least 1 character type must be selected. Returning to the selection process.");
                 invalidEntry = true;
                 }
             else { invalidEntry = false;}
           }
         while (invalidEntry);
 
-        
+
     //build string of chars to use for this pwd, per user input above
         if (useLowercase)    {charsToUse = charsLower;}
         if (useUppercase)    {charsToUse = charsToUse + charsUpper;}
@@ -73,7 +72,6 @@ function writePassword() {
   passwordText.value = password;
   console.log("writePassword function was executed, and passwordText.value= " + passwordText.value)
 }
-
 
 // call function to copy the password from the web page to the clipboard
 //isn't there a way to do this all in html?
