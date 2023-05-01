@@ -14,7 +14,7 @@ body,
 
 body {
   font-family: sans-serif;
-  background-color: #f9fbfd;
+  background-image: url("../images/software_development.jpg");
 }
 
 .wrapper {
@@ -72,7 +72,7 @@ header {
   clear: both;
 }
 
-.btn {
+.button-to-generate {
   border: none;
   background-color: hsl(360, 91%, 36%);
   border-radius: 25px;
@@ -119,7 +119,7 @@ button[disabled] {
 }
 
 @media (max-width: 690px) {
-  .btn {
+  .button-to-generate {
     font-size: 1rem;
     margin: 16px 0px 0px 0px;
     padding: 10px 15px;
@@ -131,7 +131,7 @@ button[disabled] {
 }
 
 @media (max-width: 500px) {
-  .btn {
+  .button-to-generate {
     font-size: 0.8rem;
   }
 }
