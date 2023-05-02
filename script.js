@@ -1,7 +1,7 @@
 var charsLower = "abcdefghijklmnopqrstuvwxyz";
 var charsUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var charsNumeric = "0123456789";
-// on link for OWASP, I chose the list accepted by MS/Oracle: https://docs.oracle.com/cd/E11223_01/doc.910/e11197/app_special_char.htm
+// on link for OWASP, I chose the list (subset) accepted by MS/Oracle: https://docs.oracle.com/cd/E11223_01/doc.910/e11197/app_special_char.htm
 var charsSpecial = "@%+\/'!#$^?:,(){}[]~-_.";
 
 function generatePassword() {
@@ -10,7 +10,9 @@ function generatePassword() {
     var useUppercase=false;
     var useNumeric=false;
     var useSpecialChars=false;
-    var charsToUse = "";  
+    var charsToUse = ""; 
+    var newPassword = "";
+
 
     //User is prompted to choose length of password. Defaults to 8 chars. 
         pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
@@ -40,23 +42,42 @@ function generatePassword() {
           }
         while (invalidEntry);
 
-
+    console.log("newPassword.length = " + newPassword.length)
     //build string of chars to use for this pwd, per user input above
-        if (useLowercase)    {charsToUse = charsLower;}
-        if (useUppercase)    {charsToUse = charsToUse + charsUpper;}
-        if (useNumeric)      {charsToUse = charsToUse + charsNumeric;}
-        if (useSpecialChars) {charsToUse = charsToUse + charsSpecial;}
+    //also add 1 of each selected char type, to ensure pwd contains at least 1 of each type
+        if (useLowercase)    {
+            charsToUse = charsLower;
+            var randomNumber = Math.floor(Math.random() * charsLower.length);   //new
+            newPassword += charsLower.substring(randomNumber, randomNumber +1); //new
+            }
+        if (useUppercase)    {
+            charsToUse = charsToUse + charsUpper;
+            var randomNumber = Math.floor(Math.random() * charsUpper.length);   //new
+            newPassword += charsUpper.substring(randomNumber, randomNumber +1); //new
+            }
+        if (useNumeric)      {
+            charsToUse = charsToUse + charsNumeric;
+            var randomNumber = Math.floor(Math.random() * charsNumeric.length);   //new
+            newPassword += charsNumeric.substring(randomNumber, randomNumber +1); //new
+            }
+        if (useSpecialChars) {
+            charsToUse = charsToUse + charsSpecial;
+            var randomNumber = Math.floor(Math.random() * charsSpecial.length);   //new
+            newPassword += charsSpecial.substring(randomNumber, randomNumber +1); //new
+            }
+      console.log("after inserting 1 each of char type, newPassword = " + newPassword + " and length = " + newPassword.length)
 
-    // generate new password for user-specified length and character set, using Math.random and Math.floor
-    // since starting i = 0, must use < pwdLength, not <= pwdLength
-    var newPassword = ""
-      for (var i = 0; i < pwdLength; i++) {
+    // generate rest of new password for user-specified length and character set, using Math.random and Math.floor
+    //  starting i = newPassword.length, while < pwdLength
+      for (var i = newPassword.length; i < pwdLength; i++) {
         var randomNumber = Math.floor(Math.random() * charsToUse.length);
         newPassword += charsToUse.substring(randomNumber, randomNumber +1);
       }
 
     // return newly-created password
     return newPassword;
+
+//end of function generatePassword()
 }
 
 // Assignment Code for generate button
