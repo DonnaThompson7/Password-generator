@@ -1,8 +1,24 @@
 var charsLower = "abcdefghijklmnopqrstuvwxyz";
 var charsUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var charsNumeric = "0123456789";
-var charsSpecial = "@%+\/'!#$^?:,(){}[]~-_.";     // on link for OWASP, I chose the list/subset accepted by MS/Oracle
+var charsSpecial = "@%+\/'!#$^?:(){}[]~-_.";     // on link for OWASP, I chose the list/subset accepted by MS/Oracle
 
+//function to shuffle the elements of an array
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+//function to generate a random password, prompting user for parameters to define the password
 function generatePassword() {
     var pwdLength;
     var useLowercase = false;
@@ -12,7 +28,7 @@ function generatePassword() {
     var charsToUse = ""; 
     var newPassword = "";
     var invalidEntry;
-
+    var tempPasswordArray;
 
     //User is prompted to choose length of password.
         pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
@@ -69,13 +85,19 @@ function generatePassword() {
           newPassword += charsSpecial.substring(randomNumber, randomNumber +1); 
           }
              
-    console.log("after inserting 1 each of char type, newPassword = " + newPassword + " and length = " + newPassword.length)
-
     // generate rest of new password for user-specified length and char type(s), using Math.random and Math.floor
       for (var i = newPassword.length; i < pwdLength; i++) {
         var randomNumber = Math.floor(Math.random() * charsToUse.length);
         newPassword += charsToUse.substring(randomNumber, randomNumber +1);
       }
+
+    //shuffle the newPassword chars, because the order of the first chars were not completely random due to ensuring 1 of each type was chosen
+      //split new Password into an array of individual chars
+      tempPasswordArray = newPassword.split("");
+      //shuffle chars within the temp Array
+      shuffle(tempPasswordArray);
+      //join chars of shuffled temp Array back into a string for final random password
+      newPassword = tempPasswordArray.join("");
 
     // return newly-created password
     return newPassword;
@@ -89,25 +111,22 @@ var generateBtn = document.querySelector("#generate");
 // Assignment Code for copy button
 var copyBtn = document.querySelector("#copy");
 
-// call function to create a password; Write password to the #password input
+// function to Write password to the #password input. This also calls generatePassword function;
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-  console.log("writePassword function was executed, and passwordText.value= " + passwordText.value)
 }
 
-// call function to copy the password from the web page to the clipboard
-//isn't there a way to do this all in html?
+// function to copy the password from the web page to the clipboard
 function copyPassword() {
   var copyPasswordText = document.querySelector("#password");
   navigator.clipboard.writeText(copyPasswordText.value)
-  console.log("copyPassword function was executed, and copyPasswordText.value= " + copyPasswordText.value)
 }
 
-// Add event listener to generate button
+// Add event listener to generate button that calls writePassword function
 generateBtn.addEventListener("click", writePassword);
 
-// Add event listener to COPY button
+// Add event listener to COPY button that calls copyPassword function
 copyBtn.addEventListener("click", copyPassword);
 
