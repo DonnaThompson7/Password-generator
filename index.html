@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <!-- head element with metadata for Password Generator -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,10 +13,12 @@
 
     <div class="wrapper">
 
+      <!-- title for Password Generator -->
       <header>
         <h1>Password Generator</h1>
       </header>
 
+      <!-- main content for Password Generator -->
       <div class="card">
         <div class="card-header">
           <h2>Generate a Password</h2>
@@ -24,7 +26,6 @@
         
         <!-- display box for generated pwd -->
         <div class="card-body">
-            <!-- #password will be referenced in js script -->
           <textarea
             readonly
             id="password"
@@ -34,12 +35,10 @@
         </div>
 
         <div class="card-footer">
-            <!-- display button to generate pwd -->
-            <!-- #generate will be referenced in js script -->
+            <!-- button to generate pwd -->
             <button id="generate" class="button-to-generate">Generate Password</button>
         
-            <!-- display button to copy pwd -->
-            <!-- #copy will be referenced in js script -->
+            <!-- button to copy pwd -->
             <button id="copy" class="button-to-copy">Copy Password</button>
         
         </div>
@@ -48,7 +47,6 @@
 
     </div>
 
-    <!-- js script to generate a pwd -->
     <script src="script.js"></script>
 
   </body>

@@ -1,7 +1,7 @@
 var charsLower = "abcdefghijklmnopqrstuvwxyz";
 var charsUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var charsNumeric = "0123456789";
-var charsSpecial = "@%+\/'!#$^?:(){}[]~-_.";     // on link for OWASP, I chose the list/subset accepted by MS/Oracle
+var charsSpecial = "@%+\/'!#$^?:(){}[]~-_.";     // on link for OWASP, I chose the list/subset accepted by MS/Oracle, minus the comma
 
 //function to shuffle the elements of an array
 function shuffle(array) {
@@ -32,7 +32,8 @@ function generatePassword() {
 
     //User is prompted to choose length of password.
         pwdLength = window.prompt("Enter desired length of password. (Note that the length must be a number between 8 and 128): ");
-        //includes VALIDATION: will prompt user until LENGTH IS BE BETWEEN 8 and 128
+        
+        //VALIDATION: will prompt user until LENGTH IS BE BETWEEN 8 and 128
         while (pwdLength < 8 || pwdLength > 128) {
           pwdLength = window.prompt("*INVALID ENTRY* The length must be a number between 8 and 128. Please re-enter desired length of password: ");
         } 
@@ -92,12 +93,15 @@ function generatePassword() {
       }
 
     //shuffle the newPassword chars, because the order of the first chars were not completely random due to ensuring 1 of each type was chosen
-      //split new Password into an array of individual chars
-      tempPasswordArray = newPassword.split("");
-      //shuffle chars within the temp Array
-      shuffle(tempPasswordArray);
-      //join chars of shuffled temp Array back into a string for final random password
-      newPassword = tempPasswordArray.join("");
+
+        //split new Password into an array of individual chars
+        tempPasswordArray = newPassword.split("");
+
+        //shuffle chars within the temp Array
+        shuffle(tempPasswordArray);
+        
+        //join chars of shuffled temp Array back into a string for final random password
+        newPassword = tempPasswordArray.join("");
 
     // return newly-created password
     return newPassword;

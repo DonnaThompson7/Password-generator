@@ -9,7 +9,7 @@
 * At lease 1 of each selected char type will be included in the password
 * The user can copy the generated password to the clipboard using a "Copy Password" button
 * This app will run in the browser with dynamically updated HTML and CSS powered by JavaScript code. 
-* The UI will adapt to multiple screen sizes.
+* The UI will adapt to multiple screen sizes for desktop, iPads/tablets, and mobile devices.
 
 <br/>
 

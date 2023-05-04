@@ -12,6 +12,7 @@ body,
   padding: 0;
 }
 
+/* background image for entire page */
 body {
   font-family: sans-serif;
   background-image: url("../images/software_development.jpg");
@@ -24,6 +25,7 @@ body {
   padding-right: 20px;
 }
 
+/* header is centered */
 header {
   text-align: center;
   background-color: hsl(0, 0%, 100%);
@@ -78,6 +80,7 @@ header {
   clear: both;
 }
 
+/* generate and copy buttons are red and in a row on UI  */
 .button-to-generate,
 .button-to-copy {
   border: none;
@@ -125,6 +128,7 @@ button[disabled] {
   overflow: hidden;
 }
 
+/* responsive sizing for iPads, tablets */
 @media (max-width: 690px) {
   .button-to-generate,
   .button-to-copy {
@@ -138,7 +142,8 @@ button[disabled] {
   }
 }
 
-@media (max-width: 500px) {
+/* responsive sizing for mobile devices */
+@media (max-width: 480px) {
   .button-to-generate,
   .button-to-copy {
     font-size: 0.8rem;
